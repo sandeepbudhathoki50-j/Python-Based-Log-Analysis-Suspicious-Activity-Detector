@@ -44,6 +44,14 @@ def detect_unknown_ips(log_entries):
             unknown_ip_attempts.append(entry)
     return unknown_ip_attempts
 
+def detect_abnormal_time(log_entries):
+    abnormal_entries = []
+    for entry in log_entries:
+        hour = entry["timestamp"].hour
+        if ABNORMAL_START_HOUR <= hour <= ABNORMAL_END_HOUR:
+            abnormal_entries.append(entry)
+    return abnormal_entries
+
 def main():
     filename = input("Enter log file name (e.g., sample_log.txt): ")
     logs = read_log_file(filename)
