@@ -71,3 +71,8 @@ def main():
         print("\nLogin Attempts from Unknown IPs:")
         for entry in unknown_ips:
             print(f"{entry['timestamp']} - {entry['user']} - {entry['ip']}")
+
+    if abnormal_times:
+        print("\nLogins During Abnormal Hours (Midnight-5AM):")
+        for entry in abnormal_times:
+            print(f"{entry['timestamp']} - {entry['user']} - {entry['ip']}")
