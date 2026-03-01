@@ -1,0 +1,2 @@
+# Python-Based-Log-Analysis-Suspicious-Activity-Detector
+Any digital system and server produces log files that regularly store the user actions, log-in attempts, time and source IP address. These logs can be used to spot the occurrence of security threats including brute-force passwords, attempts to gain access remotely, and suspicious off-hours behavior, which is a critical source of information.
