@@ -24,3 +24,8 @@ def parse_log_entry(entry):
         "user": user,
         "ip": ip
     }
+
+def main():
+    filename = input("Enter log file name (e.g., sample_log.txt): ")
+    logs = read_log_file(filename)
+    parsed_logs = [parse_log_entry(log) for log in logs]
