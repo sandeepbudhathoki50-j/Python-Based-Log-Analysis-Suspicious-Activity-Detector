@@ -61,3 +61,8 @@ def main():
     unknown_ips = detect_unknown_ips(parsed_logs)
     abnormal_times = detect_abnormal_time(parsed_logs)
     print("\n--- Suspicious Activity Report ---")
+
+    if failed_logins:
+        print("\nMultiple Failed Login Attempts:")
+        for user, count in failed_logins:
+            print(f"User: {user}, Failed Attempts: {count}")
