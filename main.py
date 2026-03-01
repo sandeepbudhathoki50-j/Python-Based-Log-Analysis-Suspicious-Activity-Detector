@@ -66,3 +66,8 @@ def main():
         print("\nMultiple Failed Login Attempts:")
         for user, count in failed_logins:
             print(f"User: {user}, Failed Attempts: {count}")
+
+    if unknown_ips:
+        print("\nLogin Attempts from Unknown IPs:")
+        for entry in unknown_ips:
+            print(f"{entry['timestamp']} - {entry['user']} - {entry['ip']}")
