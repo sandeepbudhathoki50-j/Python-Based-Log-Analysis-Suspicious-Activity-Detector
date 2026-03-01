@@ -82,3 +82,6 @@ def main():
             print(f"{entry['timestamp']} - {entry['user']} - {entry['ip']}")
     else:
         print("\nNo abnormal time activity detected.")
+
+if __name__ == "__main__":
+    main()
