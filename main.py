@@ -25,6 +25,14 @@ def parse_log_entry(entry):
         "ip": ip
     }
 
+def detect_failed_logins(log_entries):
+    failed_counts = {}
+    for entry in log_entries:
+        if entry["status"] == "LOGIN_FAILED":
+            user = entry["user"]
+            failed_counts[user] = failed_counts.get(user, 0) + 1
+    return failed_counts
+
 def main():
     filename = input("Enter log file name (e.g., sample_log.txt): ")
     logs = read_log_file(filename)
