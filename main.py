@@ -37,6 +37,13 @@ def detect_failed_logins(log_entries):
             suspicious_users.append((user, count))
     return suspicious_users
 
+def detect_unknown_ips(log_entries):
+    unknown_ip_attempts = []
+    for entry in log_entries:
+        if entry["ip"] not in KNOWN_IPS:
+            unknown_ip_attempts.append(entry)
+    return unknown_ip_attempts
+
 def main():
     filename = input("Enter log file name (e.g., sample_log.txt): ")
     logs = read_log_file(filename)
