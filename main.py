@@ -56,3 +56,6 @@ def main():
     filename = input("Enter log file name (e.g., sample_log.txt): ")
     logs = read_log_file(filename)
     parsed_logs = [parse_log_entry(log) for log in logs]
+    failed_logins = detect_failed_logins(parsed_logs)
+    unknown_ips = detect_unknown_ips(parsed_logs)
+    abnormal_times = detect_abnormal_time(parsed_logs)
