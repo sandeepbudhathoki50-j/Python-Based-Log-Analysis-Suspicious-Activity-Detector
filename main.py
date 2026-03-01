@@ -27,11 +27,15 @@ def parse_log_entry(entry):
 
 def detect_failed_logins(log_entries):
     failed_counts = {}
+    suspicious_users = []
     for entry in log_entries:
         if entry["status"] == "LOGIN_FAILED":
             user = entry["user"]
             failed_counts[user] = failed_counts.get(user, 0) + 1
-    return failed_counts
+    for user, count in failed_counts.items():
+        if count >= FAILED_LOGIN_THRESHOLD:
+            suspicious_users.append((user, count))
+    return suspicious_users
 
 def main():
     filename = input("Enter log file name (e.g., sample_log.txt): ")
