@@ -66,13 +66,19 @@ def main():
         print("\nMultiple Failed Login Attempts:")
         for user, count in failed_logins:
             print(f"User: {user}, Failed Attempts: {count}")
+    else:
+        print("\nNo excessive failed logins detected.")
 
     if unknown_ips:
         print("\nLogin Attempts from Unknown IPs:")
         for entry in unknown_ips:
             print(f"{entry['timestamp']} - {entry['user']} - {entry['ip']}")
+    else:
+        print("\nNo unknown IP activity detected.")
 
     if abnormal_times:
         print("\nLogins During Abnormal Hours (Midnight-5AM):")
         for entry in abnormal_times:
             print(f"{entry['timestamp']} - {entry['user']} - {entry['ip']}")
+    else:
+        print("\nNo abnormal time activity detected.")
