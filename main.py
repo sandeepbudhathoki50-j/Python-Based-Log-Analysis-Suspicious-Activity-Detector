@@ -1,16 +1,19 @@
 import datetime
 
+# Known safe IP addresses
 KNOWN_IPS = ["192.168.1.10", "10.0.0.5"]
 FAILED_LOGIN_THRESHOLD = 3
 ABNORMAL_START_HOUR = 0
 ABNORMAL_END_HOUR = 5
 
 def read_log_file(filename):
+    """Reads log file and returns list of log entries."""
     with open(filename, "r") as file:
         logs = file.readlines()
     return logs
 
 def parse_log_entry(entry):
+    """Parses a single log entry into a structured dictionary."""
     parts = entry.strip().split()
     date = parts[0]
     time = parts[1]
@@ -26,6 +29,7 @@ def parse_log_entry(entry):
     }
 
 def detect_failed_logins(log_entries):
+    """Detects users with failed login attempts exceeding the threshold."""
     failed_counts = {}
     suspicious_users = []
     for entry in log_entries:
@@ -38,6 +42,7 @@ def detect_failed_logins(log_entries):
     return suspicious_users
 
 def detect_unknown_ips(log_entries):
+    """Detects login attempts from IPs not in the known safe list."""
     unknown_ip_attempts = []
     for entry in log_entries:
         if entry["ip"] not in KNOWN_IPS:
@@ -45,6 +50,7 @@ def detect_unknown_ips(log_entries):
     return unknown_ip_attempts
 
 def detect_abnormal_time(log_entries):
+    """Detects logins occurring during abnormal hours (midnight to 5AM)."""
     abnormal_entries = []
     for entry in log_entries:
         hour = entry["timestamp"].hour
@@ -53,6 +59,7 @@ def detect_abnormal_time(log_entries):
     return abnormal_entries
 
 def main():
+    """Main function to run the log analysis and print the report."""
     print("=== Log Analysis & Suspicious Activity Detector ===")
     filename = input("Enter log file name (e.g., sample_log.txt): ")
     logs = read_log_file(filename)
@@ -60,6 +67,7 @@ def main():
     failed_logins = detect_failed_logins(parsed_logs)
     unknown_ips = detect_unknown_ips(parsed_logs)
     abnormal_times = detect_abnormal_time(parsed_logs)
+
     print("\n--- Suspicious Activity Report ---")
 
     if failed_logins:
